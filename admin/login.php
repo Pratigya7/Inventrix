@@ -186,7 +186,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 switch(role) {
                     case 'admin': return 'admin-dashboard.php';
                     case 'user': return 'user-dashboard.php';
-                    case 'viewer': return 'viewer-dashboard.html';
                     default: return 'dashboard.html';
                 }
             }
