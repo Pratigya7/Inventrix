@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - UserHub</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <h1><i class="fas fa-cube"></i> UserHub</h1>
+        </div>
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user-details">
+                <span class="user-name" id="userName">Pratigya</span>
+                <span class="user-email" id="userEmail">Pratigy@gmail.com</span>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="products.html" class="nav-link">
+                    <i class="fas fa-search"></i> Discover Products
+                </a>
+                <a href="profile.html" class="nav-link active">
+                    <i class="fas fa-user"></i> My Profile
+                </a>
+                <a href="bill.html" class="nav-link">
+                    <i class="fas fa-receipt"></i> My Bills
+                    <span class="badge" id="pendingBills">2</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="profile-container">
+                <div class="welcome-section">
+                    <h1>My Profile</h1>
+                    <p>View and update your personal information</p>
+                </div>
+
+                <form onsubmit="return saveProfile()">
+                    <!-- Basic Information -->
+                    <div class="profile-section">
+                        <h2><i class="fas fa-user-circle"></i> Basic Information</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address Details -->
+                    <div class="profile-section">
+                        <h2><i class="fas fa-map-marker-alt"></i> Address Details</h2>
+                        
+                        <div class="form-group">
+                            <label for="street">Street Address</label>
+                            <input type="text" id="street" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" id="state" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="zipCode">Zip Code</label>
+                            <input type="text" id="zipCode" required>
+                        </div>
+                    </div>
+
+                    <!-- Account Settings -->
+                    <div class="profile-section">
+                        <h2><i class="fas fa-cog"></i> Account Settings</h2>
+                        
+                        <div class="form-group">
+                            <label>Password</label>
+                            <button type="button" class="btn btn-secondary" onclick="showChangePassword()">
+                                <i class="fas fa-key"></i> Change Password
+                            </button>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="notifications">
+                            <label for="notifications">Receive email notifications</label>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 UserHub. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        function showChangePassword() {
+            const newPassword = prompt('Enter new password:');
+            if (newPassword && newPassword.length >= 6) {
+                showNotification('Password changed successfully!');
+            } else if (newPassword) {
+                showNotification('Password must be at least 6 characters', 'error');
+            }
+        }
+    </script>
+</body>
+</html>

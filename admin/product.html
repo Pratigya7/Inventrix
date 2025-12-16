@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventora - Products</title>
+    <link rel="stylesheet" href="./css/product.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <h1>Inventora</h1>
+        </div>
+
+        <div class="nav-menu">
+            <div class="nav-item active">
+                <a href="./index.html"><i>📊Dashboard</i> </a>
+            </div>
+            <div class="nav-item">
+                <a href="./report.html"><i>📋</i> Report</a>
+            </div>
+            <div class="nav-item">
+                <a href="./product.html"><i>📦</i> Product</a>
+            </div>
+            <div class="nav-item">
+               <a href="./supplier.html"> <i>🏢</i> Supplier</a>
+            </div>
+            <div class="nav-item">
+                <a href="./purchaseOrder.html"><i>📝</i> Purchase Order</a>
+            </div>
+            <div class="nav-item">
+                <a href="./User.html"><i>👥</i> User</a>
+            </div>
+        </div>
+
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h1>Product List</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">PP</div>
+                <span>Pratigya</span>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="content-header">
+                <div class="content-title">
+                    <h2>All Products</h2>
+                    <p>Manage your inventory products, including details, stock levels, and suppliers.</p>
+                </div>
+                <button class="btn" id="addProductBtn">Add New Product</button>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>SKU</th>
+                            <th>Category</th>
+                            <th>Stock</th>
+                            <th>Supplier</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="product-name">Laptop Pro X</td>
+                            <td>LPX-2023</td>
+                            <td>Electronics</td>
+                            <td class="stock-high">150</td>
+                            <td>Tech Innovations</td>
+                            <td class="action-buttons">
+                                <button class="action-btn edit-btn">Edit</button>
+                                <button class="action-btn delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="product-name">Wireless Ergonomic Mouse</td>
+                            <td>WEM-005</td>
+                            <td>Accessories</td>
+                            <td class="stock-high">300</td>
+                            <td>Ergo Solutions</td>
+                            <td class="action-buttons">
+                                <button class="action-btn edit-btn">Edit</button>
+                                <button class="action-btn delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="product-name">4K Ultra HD Monitor</td>
+                            <td>4KM-XYZ</td>
+                            <td>Electronics</td>
+                            <td class="stock-medium">80</td>
+                            <td>Display Corp</td>
+                            <td class="action-buttons">
+                                <button class="action-btn edit-btn">Edit</button>
+                                <button class="action-btn delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="product-name">Mechanical Keyboard RGB</td>
+                            <td>MK-RGB1</td>
+                            <td>Peripherals</td>
+                            <td class="stock-high">220</td>
+                            <td>Garner Gear</td>
+                            <td class="action-buttons">
+                                <button class="action-btn edit-btn">Edit</button>
+                                <button class="action-btn delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="product-name">External SSD 1TB</td>
+                            <td>SSD-1TB</td>
+                            <td>Storage</td>
+                            <td class="stock-low">25</td>
+                            <td>Data Stream</td>
+                            <td class="action-buttons">
+                                <button class="action-btn edit-btn">Edit</button>
+                                <button class="action-btn delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="pagination">
+                <div class="pagination-info">Showing 5 of 15 products</div>
+                <div class="pagination-controls">
+                    <button class="page-btn">Previous</button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">Next</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Inventora. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // In a real app, you would load the corresponding page content
+                    const pageName = this.textContent.trim();
+                    document.querySelector('.page-title h1').textContent = pageName;
+                });
+            });
+            
+            // Add Product Button
+            const addProductBtn = document.getElementById('addProductBtn');
+            addProductBtn.addEventListener('click', function() {
+                alert('Add Product functionality would open a form here');
+                // In a real app, this would open a modal or navigate to an add product page
+            });
+            
+            // Edit and Delete buttons
+            const editButtons = document.querySelectorAll('.edit-btn');
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            
+            editButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productName = this.closest('tr').querySelector('.product-name').textContent;
+                    alert(`Edit product: ${productName}`);
+                });
+            });
+            
+            deleteButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productName = this.closest('tr').querySelector('.product-name').textContent;
+                    if (confirm(`Are you sure you want to delete ${productName}?`)) {
+                        alert(`${productName} deleted successfully`);
+                        // In a real app, you would remove the row from the table
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

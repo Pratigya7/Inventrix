@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventora - Purchase Orders</title>
+    <link rel="stylesheet" href="./css/productOrder.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <h1>Inventora</h1>
+        </div>
+        
+        <div class="nav-menu">
+            <div class="nav-item active">
+                <a href="./index.html"><i>📊Dashboard</i> </a>
+            </div>
+            <div class="nav-item">
+                <a href=""><i>📋</i> Report</a>
+            </div>
+            <div class="nav-item">
+                <a href="./product.html"><i>📦</i> Product</a>
+            </div>
+            <div class="nav-item">
+               <a href="./supplier.html"> <i>🏢</i> Supplier</a>
+            </div>
+            <div class="nav-item">
+                <a href="./purchaseOrder.html"><i>📝</i> Purchase Order</a>
+            </div>
+            <div class="nav-item">
+                <a href="./User.html"><i>👥</i> User</a>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h1>Purchase Order List</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">JD</div>
+                <span>John Doe</span>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="content-header">
+                <div class="content-title">
+                    <h2>All Purchase Orders</h2>
+                </div>
+                <button class="btn" id="addOrderBtn">Create New Order</button>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PO Number</th>
+                            <th>Date</th>
+                            <th>Supplier</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PO-2023-001</td>
+                            <td>2023-10-26</td>
+                            <td>Global Tech Inc.</td>
+                            <td class="status-completed">Completed</td>
+                            <td>$12,500.00</td>
+                            <td class="action-buttons">
+                                <button class="action-btn view-btn">👁️</button>
+                                <button class="action-btn edit-btn">✏️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PO-2023-002</td>
+                            <td>2023-10-27</td>
+                            <td>Innovate Solutions</td>
+                            <td class="status-pending">Pending</td>
+                            <td>$8,200.00</td>
+                            <td class="action-buttons">
+                                <button class="action-btn view-btn">👁️</button>
+                                <button class="action-btn edit-btn">✏️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PO-2023-003</td>
+                            <td>2023-10-28</td>
+                            <td>Apex Logistics</td>
+                            <td class="status-partial">Partially Received</td>
+                            <td>$5,150.00</td>
+                            <td class="action-buttons">
+                                <button class="action-btn view-btn">👁️</button>
+                                <button class="action-btn edit-btn">✏️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PO-2023-004</td>
+                            <td>2023-10-29</td>
+                            <td>Quantum Supplies</td>
+                            <td class="status-cancelled">Cancelled</td>
+                            <td>$2,300.00</td>
+                            <td class="action-buttons">
+                                <button class="action-btn view-btn">👁️</button>
+                                <button class="action-btn edit-btn">✏️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PO-2023-005</td>
+                            <td>2023-10-30</td>
+                            <td>Megacorp Distributors</td>
+                            <td class="status-completed">Completed</td>
+                            <td>$22,000.00</td>
+                            <td class="action-buttons">
+                                <button class="action-btn view-btn">👁️</button>
+                                <button class="action-btn edit-btn">✏️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="pagination">
+                <div class="pagination-info">Showing 1-5 of 5 orders</div>
+                <div class="pagination-controls">
+                    <button class="page-btn">Previous</button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">Next</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Inventora. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const pageName = this.textContent.trim();
+                    document.querySelector('.page-title h1').textContent = pageName;
+                });
+            });
+            
+            // Add Order Button
+            const addOrderBtn = document.getElementById('addOrderBtn');
+            addOrderBtn.addEventListener('click', function() {
+                alert('Create New Purchase Order functionality would open here');
+            });
+            
+            // View and Edit buttons
+            const viewButtons = document.querySelectorAll('.view-btn');
+            const editButtons = document.querySelectorAll('.edit-btn');
+            
+            viewButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const poNumber = this.closest('tr').querySelector('td:first-child').textContent;
+                    alert(`View purchase order: ${poNumber}`);
+                });
+            });
+            
+            editButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const poNumber = this.closest('tr').querySelector('td:first-child').textContent;
+                    alert(`Edit purchase order: ${poNumber}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

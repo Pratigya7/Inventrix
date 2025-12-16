@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Products - UserHub</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <h1><i class="fas fa-cube"></i> UserHub</h1>
+        </div>
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user-details">
+                <span class="user-name" id="userName">Jane Doe</span>
+                <span class="user-email" id="userEmail">jane.doe@example.com</span>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="products.html" class="nav-link active">
+                    <i class="fas fa-search"></i> Discover Products
+                </a>
+                <a href="profile.html" class="nav-link">
+                    <i class="fas fa-user"></i> My Profile
+                </a>
+                <a href="bill.html" class="nav-link">
+                    <i class="fas fa-receipt"></i> My Bills
+                    <span class="badge" id="pendingBills">2</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="welcome-section">
+                <h1>Discover Products</h1>
+                <p>Search and browse products added by admin</p>
+            </div>
+
+            <!-- Search Box -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search for products by name or keyword...">
+                    <button class="search-btn" onclick="searchProducts()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-container">
+                <div class="form-row">
+                    <div class="filter-group">
+                        <h4>Categories</h4>
+                        <div class="filter-options">
+                            <span class="filter-option active" onclick="filterByCategory('All Categories')">
+                                All Categories
+                            </span>
+                            <span class="filter-option" onclick="filterByCategory('electronics')">
+                                Electronics
+                            </span>
+                            <span class="filter-option" onclick="filterByCategory('home')">
+                                Home Goods
+                            </span>
+                            <span class="filter-option" onclick="filterByCategory('apparel')">
+                                Apparel
+                            </span>
+                            <span class="filter-option" onclick="filterByCategory('books')">
+                                Books
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Sort By</h4>
+                        <div class="filter-options">
+                            <span class="filter-option" onclick="sortProducts('relevance')">
+                                Relevance
+                            </span>
+                            <span class="filter-option" onclick="sortProducts('price-low')">
+                                Price: Low to High
+                            </span>
+                            <span class="filter-option" onclick="sortProducts('price-high')">
+                                Price: High to Low
+                            </span>
+                            <span class="filter-option" onclick="sortProducts('name')">
+                                Name
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Price Range</h4>
+                        <div class="price-range">
+                            <input type="range" min="0" max="1000" value="1000" class="slider">
+                            <div>$0 - $1000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Count -->
+            <div class="products-count">
+                Found Products (<span id="productsCount">6</span> results)
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 UserHub. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Load all products on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const productsGrid = document.getElementById('productsGrid');
+            if (productsGrid) {
+                // Clear and load all products
+                productsGrid.innerHTML = '';
+                products.forEach(product => {
+                    const productCard = createProductCard(product);
+                    productsGrid.appendChild(productCard);
+                });
+                
+                // Update products count
+                document.getElementById('productsCount').textContent = products.length;
+            }
+            
+            // Enable search on Enter key
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchProducts();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

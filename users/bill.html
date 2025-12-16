@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bill - UserHub</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <h1><i class="fas fa-cube"></i> UserHub</h1>
+        </div>
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user-details">
+                <span class="user-name" id="userName">Jane Doe</span>
+                <span class="user-email" id="userEmail">jane.doe@example.com</span>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="products.html" class="nav-link">
+                    <i class="fas fa-search"></i> Discover Products
+                </a>
+                <a href="profile.html" class="nav-link">
+                    <i class="fas fa-user"></i> My Profile
+                </a>
+                <a href="bill.html" class="nav-link active">
+                    <i class="fas fa-receipt"></i> My Bills
+                    <span class="badge" id="pendingBills">2</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="bill-container">
+                <!-- Bill Header -->
+                <div class="bill-header">
+                    <h1><i class="fas fa-receipt"></i> Bill & Checkout</h1>
+                    <p>Review your items before proceeding to payment</p>
+                    
+                    <div class="bill-summary">
+                        <div class="summary-item">
+                            <span class="summary-value" id="itemCount">2</span>
+                            <span class="summary-label">Items</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-value" id="billTotal">$782.42</span>
+                            <span class="summary-label">Total Amount</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bill Table -->
+                <div class="bill-table" id="billTable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Unit Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="billItems">
+                            <!-- Bill items will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty Bill Message -->
+                <div class="empty-bill" id="emptyBill" style="display: none;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>Your bill is empty</h3>
+                    <p>Add products from the dashboard or products page</p>
+                    <a href="products.html" class="btn btn-primary" style="margin-top: 20px;">
+                        <i class="fas fa-shopping-bag"></i> Browse Products
+                    </a>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$724.46</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Tax (8%):</span>
+                        <span id="tax">$57.96</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span>$0.00</span>
+                    </div>
+                    
+                    <div class="summary-row total">
+                        <span>Grand Total:</span>
+                        <span id="total">$782.42</span>
+                    </div>
+                    
+                    <button class="checkout-btn" onclick="checkout()">
+                        <i class="fas fa-lock"></i> Proceed to Checkout
+                    </button>
+                    
+                    <p style="text-align: center; margin-top: 15px; color: #666; font-size: 14px;">
+                        <i class="fas fa-shield-alt"></i> Secure payment · 256-bit SSL encryption
+                    </p>
+                </div>
+
+                <!-- Continue Shopping -->
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="products.html" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Continue Shopping
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 UserHub. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Load bill items on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBillItems();
+        });
+    </script>
+</body>
+</html>

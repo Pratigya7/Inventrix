@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventora - User Management</title>
+    <link rel="stylesheet" href="./css/user.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <h1>Inventora</h1>
+        </div>
+        
+         <div class="nav-menu">
+            <div class="nav-item active">
+                <a href="./index.html"><i>📊Dashboard</i> </a>
+            </div>
+            <div class="nav-item">
+                <a href="./report.html"><i>📋</i> Report</a>
+            </div>
+            <div class="nav-item">
+                <a href="./product.html"><i>📦</i> Product</a>
+            </div>
+            <div class="nav-item">
+               <a href="./supplier.html"> <i>🏢</i> Supplier</a>
+            </div>
+            <div class="nav-item">
+                <a href="./purchaseOrder.html"><i>📝</i> Purchase Order</a>
+            </div>
+            <div class="nav-item">
+                <a href="./User.html"><i>👥</i> User</a>
+            </div>
+        </div>
+
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h1>User Management</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">JD</div>
+                <span>John Doe</span>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="content-header">
+                <div class="content-title">
+                    <h2>Manage Existing Users</h2>
+                </div>
+            </div>
+            
+            <div class="user-list">
+                <div class="user-card">
+                    <div class="user-info-card">
+                        <div class="user-avatar-small">AJ</div>
+                        <div class="user-details">
+                            <h4>Alice Johnson</h4>
+                            <p>alice.j@example.com</p>
+                        </div>
+                    </div>
+                    <div class="user-role role-admin">Admin</div>
+                    <div class="user-actions">
+                        <button class="action-btn edit-btn">✏️</button>
+                        <button class="action-btn delete-btn">🗑️</button>
+                    </div>
+                </div>
+                
+                <div class="user-card">
+                    <div class="user-info-card">
+                        <div class="user-avatar-small">BS</div>
+                        <div class="user-details">
+                            <h4>Bob Smith</h4>
+                            <p>bob.s@example.com</p>
+                        </div>
+                    </div>
+                    <div class="user-role role-user">User</div>
+                    <div class="user-actions">
+                        <button class="action-btn edit-btn">✏️</button>
+                        <button class="action-btn delete-btn">🗑️</button>
+                    </div>
+                </div>
+                
+                <div class="user-card">
+                    <div class="user-info-card">
+                        <div class="user-avatar-small">CB</div>
+                        <div class="user-details">
+                            <h4>Charlie Brown</h4>
+                            <p>charlie.b@example.com</p>
+                        </div>
+                    </div>
+                    <div class="user-role role-viewer">Viewer</div>
+                    <div class="user-actions">
+                        <button class="action-btn edit-btn">✏️</button>
+                        <button class="action-btn delete-btn">🗑️</button>
+                    </div>
+                </div>
+                
+                <div class="user-card">
+                    <div class="user-info-card">
+                        <div class="user-avatar-small">DP</div>
+                        <div class="user-details">
+                            <h4>Diana Prince</h4>
+                            <p>diana.p@example.com</p>
+                        </div>
+                    </div>
+                    <div class="user-role role-user">User</div>
+                    <div class="user-actions">
+                        <button class="action-btn edit-btn">✏️</button>
+                        <button class="action-btn delete-btn">🗑️</button>
+                    </div>
+                </div>
+                
+                <div class="user-card">
+                    <div class="user-info-card">
+                        <div class="user-avatar-small">EA</div>
+                        <div class="user-details">
+                            <h4>Eve Adams</h4>
+                            <p>eve.a@example.com</p>
+                        </div>
+                    </div>
+                    <div class="user-role role-admin">Admin</div>
+                    <div class="user-actions">
+                        <button class="action-btn edit-btn">✏️</button>
+                        <button class="action-btn delete-btn">🗑️</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="add-user-form">
+                <h3 class="form-title">Add New User</h3>
+                <form id="userForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="userName">Name</label>
+                            <input type="text" id="userName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userEmail">Email</label>
+                            <input type="email" id="userEmail" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="userRole">Role</label>
+                            <select id="userRole" required>
+                                <option value="viewer">Viewer</option>
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword">Password</label>
+                            <input type="password" id="userPassword" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn">Add User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Inventora. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const pageName = this.textContent.trim();
+                    document.querySelector('.page-title h1').textContent = pageName;
+                });
+            });
+            
+            // User form submission
+            const userForm = document.getElementById('userForm');
+            userForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const userData = {
+                    name: document.getElementById('userName').value,
+                    email: document.getElementById('userEmail').value,
+                    role: document.getElementById('userRole').value,
+                    password: document.getElementById('userPassword').value
+                };
+                
+                console.log('User data:', userData);
+                alert('User added successfully!');
+                userForm.reset();
+                
+                // In a real app, you would add the user to the list
+            });
+            
+            // Edit and Delete buttons
+            const editButtons = document.querySelectorAll('.edit-btn');
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            
+            editButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const userName = this.closest('.user-card').querySelector('h4').textContent;
+                    alert(`Edit user: ${userName}`);
+                });
+            });
+            
+            deleteButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const userName = this.closest('.user-card').querySelector('h4').textContent;
+                    if (confirm(`Are you sure you want to delete ${userName}?`)) {
+                        alert(`${userName} deleted successfully`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
