@@ -5,8 +5,13 @@ require_once 'db.php';
 $db = new Database();
 $conn = $db->getConnection();
 
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $error = '';
 $success = '';
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = sanitize($_POST['name']);
@@ -16,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = sanitize($_POST['role']);
 
     // Validate garxa
-    if (empty($name) || empty($email) || empty($password)) {
+    if (empty($name) || empty($email) || empty($password) || empty($confirm_password) || empty($role)) {
         $error = "All fields are required!";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Invalid email format!";
@@ -26,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Passwords do not match!";
     } else {
         // email xa ki xaina check garna lai
-        $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT id FROM admin WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
@@ -38,13 +43,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
             // Insert user
-            $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO admin (name, email, password, role) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $name, $email, $hashed_password, $role);
             
             if ($stmt->execute()) {
                 $success = "Account created successfully! You can now login.";
+                // Clear form values after successful registration
+                $name = $email = $role = '';
             } else {
-                $error = "Error creating account. Please try again.";
+                $error = "Error creating account: " . $stmt->error;
             }
         }
         $stmt->close();
@@ -59,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventora - Sign Up</title>
     <link rel="stylesheet" href="./css/signUp.css">
-    
 </head>
 <body>
     <div class="container">
@@ -68,22 +74,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p>Create your account</p>
         </div>
 
-        <form id="signupForm">
+        <?php if (!empty($error)): ?>
+            <div class="error-message" style="color: #e74c3c; background: #fde8e8; padding: 12px; border-radius: 5px; margin-bottom: 20px; text-align: center;">
+                <?php echo htmlspecialchars($error); ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (!empty($success)): ?>
+            <div class="success-message" style="color: #27ae60; background: #e8f8f0; padding: 12px; border-radius: 5px; margin-bottom: 20px; text-align: center;">
+                <?php echo htmlspecialchars($success); ?>
+            </div>
+        <?php endif; ?>
+
+        <form id="signupForm" method="POST" action="">
             <div class="form-group">
                 <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" required>
+                <input type="text" id="fullName" name="name" value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>" required>
                 <div class="error" id="nameError">Please enter your full name</div>
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" required>
+                <input type="email" id="email" name="email" value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>" required>
                 <div class="error" id="emailError">Please enter a valid email</div>
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" required>
+                <input type="password" id="password" name="password" required>
                 <div class="password-strength">
                     <div class="strength-bar" id="strengthBar"></div>
                 </div>
@@ -92,22 +110,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" required>
+                <input type="password" id="confirmPassword" name="confirm_password" required>
                 <div class="error" id="confirmError">Passwords don't match</div>
             </div>
 
             <div class="form-group">
                 <label>Select Role</label>
                 <div class="role-options">
-                    <button type="button" class="role-btn selected" data-role="user">User</button>
-                    <button type="button" class="role-btn" data-role="admin">Admin</button>
+                    <button type="button" class="role-btn <?php echo (!isset($role) || $role == 'user') ? 'selected' : ''; ?>" data-role="user">User</button>
+                    <button type="button" class="role-btn <?php echo (isset($role) && $role == 'admin') ? 'selected' : ''; ?>" data-role="admin">Admin</button>
                 </div>
-                <input type="hidden" id="selectedRole" value="user">
+                <input type="hidden" id="selectedRole" name="role" value="<?php echo isset($role) ? htmlspecialchars($role) : 'user'; ?>">
             </div>
 
             <button type="submit" class="submit-btn">Create Account</button>
-
-            <div class="success" id="successMsg">Account created! Redirecting...</div>
 
             <div class="login-link">
                 Already have an account? <a href="login.php">Sign In</a>
@@ -145,15 +161,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 strengthBar.style.background = strength < 33 ? '#e74c3c' : strength < 66 ? '#f39c12' : '#27ae60';
             });
 
-            // Form validation and submission
+            // Form validation
             const form = document.getElementById('signupForm');
             
             form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
                 // Reset errors
-                document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
-                document.getElementById('successMsg').style.display = 'none';
+                document.querySelectorAll('.error').forEach(el => {
+                    el.style.display = 'none';
+                    el.style.color = '#e74c3c';
+                });
                 
                 // Get form values
                 const name = document.getElementById('fullName').value.trim();
@@ -189,35 +205,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     isValid = false;
                 }
                 
-                if (isValid) {
-                    // Store user data (in production, this would go to a backend)
-                    const userData = {
-                        name: name,
-                        email: email,
-                        password: password, 
-                        role: role,
-                        createdAt: new Date().toISOString()
-                    };
-                    
-                    // Save to localStorage for demo
-                    localStorage.setItem('user_' + email, JSON.stringify(userData));
-                    
-                    // Save to users list
-                    const users = JSON.parse(localStorage.getItem('users') || '[]');
-                    users.push({email: email, password: password, role: role, name: name});
-                    localStorage.setItem('users', JSON.stringify(users));
-                    
-                    // Show success message
-                    document.getElementById('successMsg').style.display = 'block';
-                    
-                    // Auto-fill email for login
-                    localStorage.setItem('lastSignedUpEmail', email);
-                    
-                    // Redirect to login after 2 seconds
-                    setTimeout(() => {
-                        window.location.href = 'login.php';
-                    }, 2000);
+                // If validation fails, prevent form submission
+                if (!isValid) {
+                    e.preventDefault();
+                    return false;
                 }
+                
+                // If validation passes, form will submit normally to PHP
+                return true;
+            });
+
+            // Show validation errors on blur
+            const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    const name = document.getElementById('fullName').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const password = document.getElementById('password').value;
+                    const confirmPassword = document.getElementById('confirmPassword').value;
+                    
+                    // Validate based on which field lost focus
+                    if (this.id === 'fullName' && name.length < 2) {
+                        document.getElementById('nameError').style.display = 'block';
+                    }
+                    if (this.id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        document.getElementById('emailError').style.display = 'block';
+                    }
+                    if (this.id === 'password' && password.length < 6) {
+                        document.getElementById('passwordError').style.display = 'block';
+                    }
+                    if (this.id === 'confirmPassword' && password !== confirmPassword) {
+                        document.getElementById('confirmError').style.display = 'block';
+                    }
+                });
+                
+                // Hide error on focus
+                input.addEventListener('focus', function() {
+                    if (this.id === 'fullName') document.getElementById('nameError').style.display = 'none';
+                    if (this.id === 'email') document.getElementById('emailError').style.display = 'none';
+                    if (this.id === 'password') document.getElementById('passwordError').style.display = 'none';
+                    if (this.id === 'confirmPassword') document.getElementById('confirmError').style.display = 'none';
+                });
             });
         });
     </script>
