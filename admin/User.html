@@ -5,36 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventora - User Management</title>
     <link rel="stylesheet" href="./css/user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">
-            <h1>Inventora</h1>
-        </div>
+    <div id="sidebar-container"></div>
         
-         <div class="nav-menu">
-            <div class="nav-item active">
-                <a href="./index.html"><i>📊Dashboard</i> </a>
-            </div>
-            <div class="nav-item">
-                <a href="./report.html"><i>📋</i> Report</a>
-            </div>
-            <div class="nav-item">
-                <a href="./product.html"><i>📦</i> Product</a>
-            </div>
-            <div class="nav-item">
-               <a href="./supplier.html"> <i>🏢</i> Supplier</a>
-            </div>
-            <div class="nav-item">
-                <a href="./purchaseOrder.html"><i>📝</i> Purchase Order</a>
-            </div>
-            <div class="nav-item">
-                <a href="./User.html"><i>👥</i> User</a>
-            </div>
-        </div>
-
-    </div>
     
     <!-- Main Content -->
     <div class="main-content">
@@ -66,8 +42,8 @@
                     </div>
                     <div class="user-role role-admin">Admin</div>
                     <div class="user-actions">
-                        <button class="action-btn edit-btn">✏️</button>
-                        <button class="action-btn delete-btn">🗑️</button>
+                          <button class="action-btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button class="action-btn delete-btn"><i class="fa-regular fa-trash-can"></i></button>
                     </div>
                 </div>
                 
@@ -81,8 +57,8 @@
                     </div>
                     <div class="user-role role-user">User</div>
                     <div class="user-actions">
-                        <button class="action-btn edit-btn">✏️</button>
-                        <button class="action-btn delete-btn">🗑️</button>
+                          <button class="action-btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button class="action-btn delete-btn"><i class="fa-regular fa-trash-can"></i></button>
                     </div>
                 </div>
                 
@@ -96,8 +72,8 @@
                     </div>
                     <div class="user-role role-viewer">Viewer</div>
                     <div class="user-actions">
-                        <button class="action-btn edit-btn">✏️</button>
-                        <button class="action-btn delete-btn">🗑️</button>
+                         <button class="action-btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button class="action-btn delete-btn"><i class="fa-regular fa-trash-can"></i></button>
                     </div>
                 </div>
                 
@@ -111,8 +87,8 @@
                     </div>
                     <div class="user-role role-user">User</div>
                     <div class="user-actions">
-                        <button class="action-btn edit-btn">✏️</button>
-                        <button class="action-btn delete-btn">🗑️</button>
+                         <button class="action-btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button class="action-btn delete-btn"><i class="fa-regular fa-trash-can"></i></button>
                     </div>
                 </div>
                 
@@ -126,8 +102,8 @@
                     </div>
                     <div class="user-role role-admin">Admin</div>
                     <div class="user-actions">
-                        <button class="action-btn edit-btn">✏️</button>
-                        <button class="action-btn delete-btn">🗑️</button>
+                        <button class="action-btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button class="action-btn delete-btn"><i class="fa-regular fa-trash-can"></i></button>
                     </div>
                 </div>
             </div>
@@ -228,6 +204,37 @@
                 });
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+    // Load sidebar.html
+    fetch('sidebar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('sidebar-container').innerHTML = data;
+
+            // Get all nav items
+            const navItems = document.querySelectorAll('.nav-item');
+
+            // Highlight the active item based on current URL
+            const currentPage = location.pathname.split("/").pop(); // e.g., 'index.html'
+            navItems.forEach(item => {
+                const link = item.querySelector('a').getAttribute('href');
+                if (link === currentPage) {
+                    item.classList.add('active'); // add 'active' class
+                }
+            });
+
+            // Add click event to switch active item when user clicks
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        })
+        .catch(err => console.error('Failed to load sidebar:', err));
+});
+
     </script>
 </body>
 </html>

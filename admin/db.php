@@ -2,7 +2,7 @@
 class Database {
     private $host = "localhost";
     private $username = "root";
-    private $password = "";
+    private $password = "root";
     private $database = "inventora_db";
     private $conn;
 

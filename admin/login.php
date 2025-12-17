@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Please fill in all fields!";
     } else {
         $stmt = $conn->prepare(
-            "SELECT id, name, email, password, role 
-             FROM admin 
+            "SELECT id, full_name, email, password, role 
+             FROM users 
              WHERE email = ? LIMIT 1"
         );
         $stmt->bind_param("s", $email);
@@ -35,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // ✅ Redirect by role
                 if ($user['role'] === 'admin') {
-                    header("Location: admin_dashboard.php");
+                    header("Location: /Inventrix/admin/admin_dashboard.php");
                 } else {
-                    header("Location: user_dashboard.php");
+                    header("Location: /Inventrix/users/user_dashboard.php");
                 }
                 exit();
             } else {

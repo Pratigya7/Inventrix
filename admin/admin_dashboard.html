@@ -5,37 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventora - Dashboard</title>
     <link rel="stylesheet" href="./css/style.css">
+    <!-- Font Awesome for icons -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-rOA1p+PpL5Qk8aP+1E7G8Q3lF1mjKcBl7lX6/pZ0sEwqf9eVnF1gqTfU3HRuL4VzzGv5glg3H2k3n/8Vv3jl1w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+     <!-- <link rel="stylesheet" href="<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />" integrity="sha512-rOA1p+PpL5Qk8aP+1E7G8Q3lF1mjKcBl7lX6/pZ0sEwqf9eVnF1gqTfU3HRuL4VzzGv5glg3H2k3n/8Vv3jl1w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
     <!-- Sidebar -->
-    <div class="sidebar">
+    <!-- <div class="sidebar">
         <div class="logo">
             <h1>Inventora</h1>
-        </div>
+        </div> -->
         
-        <div class="nav-menu">
+        <!-- <div class="nav-menu">
             <div class="nav-item active">
-                <a href="./index.html"><i>📊Dashboard</i> </a>
+                <a href="./index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
             </div>
             <div class="nav-item">
-                <a href="./report.html"><i>📋</i> Report</a>
+                <a href="./report.html"><i class="fas fa-file-alt"></i> Report</a>
             </div>
             <div class="nav-item">
-                <a href="./product.html"><i>📦</i> Product</a>
+                <a href="./product.html"><i class="fas fa-box-open"></i> Product</a>
             </div>
             <div class="nav-item">
-               <a href="./supplier.html"> <i>🏢</i> Supplier</a>
+               <a href="./supplier.html"><i class="fas fa-truck"></i> Supplier</a>
             </div>
             <div class="nav-item">
-                <a href="./purchaseOrder.html"><i>📝</i> Purchase Order</a>
+                <a href="./purchaseOrder.html"><i class="fas fa-shopping-cart"></i> Purchase Order</a>
             </div>
             <div class="nav-item">
-                <a href="./User.html"><i>👥</i> User</a>
+                <a href="./user.html"><i class="fas fa-user"></i> User</a>
             </div>
-        </div>
-
-    </div>
-    
+        </div> -->
+    <!-- </div> -->
+    <div id="sidebar-container"></div>
     <!-- Main Content -->
     <div class="main-content">
         <div class="header">
@@ -104,20 +108,61 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Navigation
             const navItems = document.querySelectorAll('.nav-item');
             
             navItems.forEach(item => {
                 item.addEventListener('click', function() {
                     navItems.forEach(i => i.classList.remove('active'));
                     this.classList.add('active');
-                    
-                    // In a real app, you would load the corresponding page content
+
                     const pageName = this.textContent.trim();
                     document.querySelector('.page-title h1').textContent = pageName;
                 });
             });
         });
+
+       
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Load sidebar.html dynamically
+    fetch('sidebar.html')
+        .then(response => response.text())
+        .then(data => {
+            // Insert sidebar into container
+            document.getElementById('sidebar-container').innerHTML = data;
+
+            // Now sidebar exists in DOM, we can run highlight logic
+            const navItems = document.querySelectorAll('.nav-item');
+
+            // Get current page filename (e.g., index.html)
+            const currentPage = location.pathname.split("/").pop();
+
+            // Highlight the matching sidebar item
+            navItems.forEach(item => {
+                const link = item.querySelector('a').getAttribute('href');
+                if (link === currentPage) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Optional: click highlight for navigation without page reload
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        })
+        .catch(err => console.error('Failed to load sidebar:', err));
+});
+
+
+
+
+
     </script>
 </body>
 </html>
