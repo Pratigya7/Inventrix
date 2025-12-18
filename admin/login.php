@@ -27,13 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = $result->fetch_assoc();
 
             if (password_verify($password, $user['password'])) {
-                // ✅ Set session
+               
                 $_SESSION['user_id']    = $user['id'];
                 $_SESSION['user_name']  = $user['name'];
                 $_SESSION['user_email'] = $user['email'];
                 $_SESSION['user_role']  = $user['role'];
 
-                // ✅ Redirect by role
+                
                 if ($user['role'] === 'admin') {
                     header("Location: /Inventrix/admin/admin_dashboard.html");
                 } else {
