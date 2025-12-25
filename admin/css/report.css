@@ -22,7 +22,7 @@
         }
 
         /* Sidebar Styles */
-        .sidebar {
+        /* .sidebar {
             width: 250px;
             background-color: var(--secondary);
             color: white;
@@ -63,7 +63,9 @@
 
         .nav-item i {
             margin-right: 10px;
-        }
+        } */
+/* Sidebar */
+
 
         /* Main Content Styles */
         .main-content {

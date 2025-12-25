@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 
                 if ($user['role'] === 'admin') {
-                    header("Location: /Inventrix/admin/admin_dashboard.html");
+                    header("Location: /Inventrix/admin/admin_dashboard.php");
                 } else {
                     header("Location: /Inventrix/users/user_dashboard.php");
                 }

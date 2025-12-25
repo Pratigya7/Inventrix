@@ -1,3 +1,9 @@
+<?php
+require_once 'auth.php';
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -219,32 +225,25 @@
         
 document.addEventListener('DOMContentLoaded', function() {
     // Load sidebar.html
-    fetch('sidebar.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('sidebar-container').innerHTML = data;
+fetch('./sidebar.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('sidebar-container').innerHTML = data;
 
-            // Get all nav items
-            const navItems = document.querySelectorAll('.nav-item');
+        const currentPage = window.location.pathname.split('/').pop();
 
-            // Highlight the active item based on current URL
-            const currentPage = location.pathname.split("/").pop(); // e.g., 'index.html'
-            navItems.forEach(item => {
-                const link = item.querySelector('a').getAttribute('href');
-                if (link === currentPage) {
-                    item.classList.add('active'); // add 'active' class
-                }
-            });
+        document.querySelectorAll('.nav-item a').forEach(link => {
+            const linkPage = link.getAttribute('href').split('/').pop();
 
-            // Add click event to switch active item when user clicks
-            navItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    navItems.forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-        })
-        .catch(err => console.error('Failed to load sidebar:', err));
+            if (linkPage === currentPage) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    })
+    .catch(err => console.error('Failed to load sidebar:', err));
+
 });
 
 

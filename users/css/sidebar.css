@@ -1,0 +1,91 @@
+/* Sidebar Container */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 180px; /* Adjust width */
+    height: 100vh;
+    background: linear-gradient(180deg, #4e54c8, #8f94fb);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: width 0.3s;
+}
+
+/* Logo */
+.sidebar .logo h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Nav Items */
+.nav-menu .nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #fff;
+    padding: 12px 15px;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Hover & Active */
+.nav-menu .nav-item a:hover,
+.nav-menu .nav-item a.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+/* Icons */
+.nav-menu .nav-item a i {
+    font-size: 1.2rem;
+}
+
+/* Logout Button Highlight */
+.nav-menu .nav-item:last-child a {
+    margin-top: auto; /* Push to bottom */
+    background: #ff4b5c;
+    color: #fff;
+}
+
+.nav-menu .nav-item:last-child a:hover {
+    background: #ff2e3a;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+        padding: 15px 10px;
+    }
+
+    .sidebar .logo h1 {
+        font-size: 1.2rem;
+    }
+
+    .nav-menu .nav-item a {
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .nav-menu .nav-item a span {
+        display: none;
+    }
+
+    .nav-menu .nav-item:last-child a {
+        margin-top: 10px;
+    }
+}

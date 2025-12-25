@@ -1,0 +1,86 @@
+/* Reset small defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Sidebar container */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: linear-gradient(180deg, #0f172a, #020617);
+    color: #e5e7eb;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 20px 0;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Logo section */
+.sidebar .logo {
+    text-align: center;
+    padding: 15px 20px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar .logo h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #38bdf8;
+}
+
+.sidebar .logo .tagline {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* Navigation menu */
+.nav-menu {
+    margin-top: 25px;
+}
+
+/* Nav items */
+.nav-item {
+    margin: 6px 12px;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #cbd5f5;
+    font-size: 15px;
+    transition: all 0.25s ease;
+}
+
+/* Icons */
+.nav-item a i {
+    font-size: 16px;
+    min-width: 20px;
+}
+
+/* Hover */
+.nav-item a:hover {
+    background: rgba(56, 189, 248, 0.15);
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+/* Active link */
+.nav-item a.active {
+    background: #38bdf8;
+    color: #020617;
+    font-weight: 600;
+}
+
+/* Responsive (optional) */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 220px;
+    }
+}
