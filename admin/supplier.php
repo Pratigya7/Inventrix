@@ -27,8 +27,8 @@ require_once 'auth.php';
             <h1>Supplier List</h1>
         </div>
         <div class="user-info">
-            <div class="user-avatar">JD</div>
-            <span>John Doe</span>
+            <div class="user-avatar">PP</div>
+            <span>Pratigya</span>
         </div>
     </div>
 
@@ -112,18 +112,37 @@ require_once 'auth.php';
 </div>
 
 <script>
-/* ================= SIDEBAR ================= */
+
+// fetch('./sidebar.html')
+//     .then(res => res.text())
+//     .then(data => {
+//         document.getElementById('sidebar-container').innerHTML = data;
+//         const currentPage = location.pathname.split('/').pop();
+//         document.querySelectorAll('.nav-item a').forEach(link => {
+//             if (link.getAttribute('href') === currentPage) {
+//                 link.classList.add('active');
+//             }
+//         });
 fetch('./sidebar.html')
-    .then(res => res.text())
+    .then(response => response.text())
     .then(data => {
         document.getElementById('sidebar-container').innerHTML = data;
-        const currentPage = location.pathname.split('/').pop();
+
+        const currentPage = window.location.pathname.split('/').pop();
+
         document.querySelectorAll('.nav-item a').forEach(link => {
-            if (link.getAttribute('href') === currentPage) {
+            const linkPage = link.getAttribute('href').split('/').pop();
+
+            if (linkPage === currentPage) {
                 link.classList.add('active');
+            } else {
+                link.classList.remove('active');
             }
         });
-    });
+    })
+    .catch(err => console.error('Failed to load sidebar:', err));
+
+    
 
 /* ================= CRUD LOGIC ================= */
 let editingId = null;

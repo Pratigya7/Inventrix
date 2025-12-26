@@ -25,8 +25,8 @@ require_once 'auth.php';
                 <h1>Purchase Order List</h1>
             </div>
             <div class="user-info">
-                <div class="user-avatar">JD</div>
-                <span>John Doe</span>
+                <div class="user-avatar">PP</div>
+                <span>Pratigya</span>
             </div>
         </div>
         

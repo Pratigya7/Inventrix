@@ -24,8 +24,8 @@ require_once 'auth.php';
         <div class="header">
             <div class="page-title"><h1>User Management</h1></div>
             <div class="user-info">
-                <div class="user-avatar">JD</div>
-                <span>John Doe</span>
+                <div class="user-avatar">PP</div>
+                <span>Pratigya</span>
             </div>
         </div>
 

@@ -29,8 +29,8 @@ require_once 'auth.php';
                 <h1>Report Generation</h1>
             </div>
             <div class="user-info">
-                <div class="user-avatar">JD</div>
-                <span>John Doe</span>
+                <div class="user-avatar">PP</div>
+                <span>Pratigya</span>
             </div>
         </div>
         
@@ -172,8 +172,8 @@ require_once 'auth.php';
             </div>
             
             <div class="export-options">
-                <button class="export-btn pdf">📄 Export as PDF</button>
-                <button class="export-btn excel">📊 Export as Excel</button>
+                <button class="export-btn pdf"> Export as PDF</button>
+                <button class="export-btn excel"> Export as Excel</button>
             </div>
         </div>
         

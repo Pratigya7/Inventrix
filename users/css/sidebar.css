@@ -3,7 +3,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 180px; /* Adjust width */
+    width: 180px;
     height: 100vh;
     background: linear-gradient(180deg, #4e54c8, #8f94fb);
     color: #fff;
@@ -12,7 +12,6 @@
     padding: 20px;
     box-shadow: 2px 0 8px rgba(0,0,0,0.1);
     z-index: 1000;
-    transition: width 0.3s;
 }
 
 /* Logo */
@@ -22,46 +21,54 @@
     margin-bottom: 40px;
 }
 
-/* Navigation Menu */
+/* Nav Menu */
 .nav-menu {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 /* Nav Items */
-.nav-menu .nav-item a {
+.nav-item a {
     display: flex;
     align-items: center;
     gap: 12px;
+    padding: 12px 15px;
     text-decoration: none;
     color: #fff;
-    padding: 12px 15px;
     border-radius: 12px;
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
 }
 
-/* Hover & Active */
-.nav-menu .nav-item a:hover,
-.nav-menu .nav-item a.active {
+/* Hover */
+.nav-item a:hover {
     background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+}
+
+/* ACTIVE PAGE (FIXED) */
+.nav-item.active a {
+    background: rgba(255, 255, 255, 0.35);
+    font-weight: 600;
 }
 
 /* Icons */
-.nav-menu .nav-item a i {
+.nav-item a i {
     font-size: 1.2rem;
 }
 
-/* Logout Button Highlight */
-.nav-menu .nav-item:last-child a {
-    margin-top: auto; /* Push to bottom */
-    background: #ff4b5c;
-    color: #fff;
+/* LOGOUT AT BOTTOM */
+.nav-item.logout {
+    margin-top: auto;
+    margin-bottom: 30px;
 }
 
-.nav-menu .nav-item:last-child a:hover {
+.nav-item.logout a {
+    background: #dc727d;
+}
+
+.nav-item.logout a:hover {
     background: #ff2e3a;
 }
 
@@ -74,18 +81,15 @@
 
     .sidebar .logo h1 {
         font-size: 1.2rem;
+        text-align: center;
     }
 
-    .nav-menu .nav-item a {
+    .nav-item a {
         justify-content: center;
         padding: 10px;
     }
 
-    .nav-menu .nav-item a span {
+    .nav-item a span {
         display: none;
-    }
-
-    .nav-menu .nav-item:last-child a {
-        margin-top: 10px;
     }
 }

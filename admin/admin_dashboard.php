@@ -70,9 +70,7 @@ require_once 'auth.php';
 </div>
 
 <script>
-/* ======================
-   LOAD SIDEBAR
-====================== */
+
 fetch('./sidebar.html')
 .then(res => res.text())
 .then(data => {
@@ -85,9 +83,7 @@ fetch('./sidebar.html')
     });
 });
 
-/* ======================
-   LOAD DASHBOARD CHARTS
-====================== */
+
 fetch('fetch_product.php')
 .then(res => res.json())
 .then(products => {
