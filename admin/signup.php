@@ -64,13 +64,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventora - Sign Up</title>
+    <title>INVENTRIX - Sign Up</title>
     <link rel="stylesheet" href="./css/signUp.css">
 </head>
 <body>
     <div class="container">
         <div class="logo">
-            <h1>Inventora</h1>
+            <h1>INVENTRIX</h1>
             <p>Create your account</p>
         </div>
 

@@ -2,6 +2,7 @@
 
 <?php
 require_once 'auth.php';
+$pageTitle = "Analytics Overview";
 ?>
 
 
@@ -21,6 +22,7 @@ require_once 'auth.php';
 
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Inventora – <?= $pageTitle ?></title>
 </head>
 
 <body>
@@ -32,15 +34,8 @@ require_once 'auth.php';
 <div class="main-content">
 
     <!-- Header -->
-    <div class="header">
-        <div class="page-title">
-            <h1>Analytics Overview</h1>
-        </div>
-        <div class="user-info">
-            <div class="user-avatar">PP</div>
-            <span>Pratigya</span>
-        </div>
-    </div>
+   <?php include 'header.php'; ?>
+   
 
     <!-- Analytics -->
     <div class="analytics-overview">

@@ -81,14 +81,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Inventora - Login</title>
+    <title>INVENTRIX- Login</title>
     <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
 
 <div class="container">
     <div class="logo">
-        <h1>Inventora</h1>
+        <h1>INVENTRIX</h1>
         <p>Welcome back! Please sign in</p>
     </div>
 

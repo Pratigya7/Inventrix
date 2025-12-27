@@ -1,5 +1,6 @@
 <?php
 require_once 'auth.php';
+$pageTitle = "Suppliers Details";
 ?>
 
 
@@ -12,6 +13,7 @@ require_once 'auth.php';
 
     <link rel="stylesheet" href="./css/supplier.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <title>Inventora – <?= $pageTitle ?></title>
 
 </head>
 <body>
@@ -22,15 +24,7 @@ require_once 'auth.php';
 <!-- Main Content -->
 <div class="main-content">
 
-    <div class="header">
-        <div class="page-title">
-            <h1>Supplier List</h1>
-        </div>
-        <div class="user-info">
-            <div class="user-avatar">PP</div>
-            <span>Pratigya</span>
-        </div>
-    </div>
+    <?php include 'header.php'; ?>
 
     <div class="page-content">
         <div class="content-header">

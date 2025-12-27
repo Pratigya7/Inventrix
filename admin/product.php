@@ -1,4 +1,5 @@
-<?php require_once 'auth.php'; ?>
+<?php require_once 'auth.php'; 
+$pageTitle = "Manage Products";?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +9,7 @@
     <title>Inventora - Products</title>
     <link rel="stylesheet" href="./css/product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <title>Inventora – <?= $pageTitle ?></title>
 </head>
 <body>
     <!-- Sidebar -->
@@ -15,10 +17,7 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <div class="header">
-            <div class="page-title"><h1>Product List</h1></div>
-            <div class="user-info"><div class="user-avatar">PP</div><span>Admin</span></div>
-        </div>
+         <?php include 'header.php'; ?>
 
         <div class="page-content">
             <div class="content-header">
