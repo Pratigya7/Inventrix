@@ -1,6 +1,6 @@
 <?php
-require_once '../../admin/auth.php'; // adjust path
-require_once '../../admin/db.php'; // your DB connection
+require_once '../../admin/auth.php'; 
+require_once '../../admin/db.php'; 
 
 $data = json_decode(file_get_contents('php://input'), true);
 

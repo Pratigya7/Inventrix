@@ -29,7 +29,7 @@ try {
     $conn = $db->getConnection();
 
     $stmt = $conn->prepare("UPDATE products SET product_name=?, unit_price=?, category=?, stock=?, supplier=? WHERE id=?");
-    $stmt->bind_param("ssdssi", $product_name, $unit_price, $category, $stock, $supplier, $id);
+    $stmt->bind_param("sdsisi", $product_name, $unit_price, $category, $stock, $supplier, $id);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Product updated successfully']);

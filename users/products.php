@@ -54,6 +54,10 @@ include 'sidebar.html';
 
 <script>
 let selectedProduct = null;
+function closeCheckoutModal() {
+    document.getElementById('checkoutModal').style.display = 'none';
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     fetch('../admin/fetch_product.php')
@@ -80,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Open checkout modal
+
 // Open checkout modal
 function openCheckoutModal(id, name, unitPrice, stock) {
     selectedProduct = { id, name, unitPrice, stock };
@@ -94,7 +98,7 @@ function openCheckoutModal(id, name, unitPrice, stock) {
     document.getElementById('checkoutModal').style.display = 'flex';
 }
 
-// Update total price dynamically with stock check
+// total price dynamically update garchha according to the stock
 function updateCheckoutTotalPrice() {
     let qty = Number(document.getElementById('checkoutQuantity').value || 0);
     if(qty > selectedProduct.stock){
@@ -105,26 +109,50 @@ function updateCheckoutTotalPrice() {
     document.getElementById('checkoutTotalPrice').innerText = (qty * selectedProduct.unitPrice).toFixed(2);
 }
 
-// Confirm checkout directly on page
+
 function confirmCheckout() {
     let qty = Number(document.getElementById('checkoutQuantity').value);
-    if(!qty || qty <= 0) return;
+    if (!qty || qty <= 0) return;
 
-    if(qty > selectedProduct.stock){
+    if (qty > selectedProduct.stock) {
         showToast("Quantity exceeds available stock!", "error");
         return;
     }
 
-    // Update stock directly in table
-    selectedProduct.stock -= qty;
-    document.getElementById(`stockCell${selectedProduct.id}`).innerText = selectedProduct.stock;
-    document.getElementById(`totalPriceCell${selectedProduct.id}`).innerText = (selectedProduct.stock * selectedProduct.unitPrice).toFixed(2);
+    // Make AJAX call to update stock in database
+    const formData = new FormData();
+    formData.append('productId', selectedProduct.id);
+    formData.append('quantity', qty);
 
-    showToast(`Checked out ${qty} x ${selectedProduct.name}`, 'success');
-      closeCheckoutModal();
+    fetch('checkout_product.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.status === 'success') {
+          
+            selectedProduct.stock = data.newStock;
+            document.getElementById(`stockCell${selectedProduct.id}`).innerText = selectedProduct.stock;
+            document.getElementById(`totalPriceCell${selectedProduct.id}`).innerText = (selectedProduct.stock * selectedProduct.unitPrice).toFixed(2);
+
+            showToast(`Checked out ${qty} x ${selectedProduct.name}`, 'success');
+            closeCheckoutModal();
+
+           
+            localStorage.setItem('dashboardRefresh', Date.now());
+        } else {
+            showToast(data.message, 'error');
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        showToast('An error occurred', 'error');
+    });
 }
 
-// Toast function
+
+
 function showToast(message, type="success"){
     const container = document.getElementById("toast-container");
     const toast = document.createElement("div");

@@ -35,7 +35,7 @@ include 'sidebar.html';
 </div>
 
 <script>
-// Example: Fetch total products added by admin
+// Fetch total products added by ADmin
 fetch('../admin/fetch_product.php')
     .then(res => res.json())
     .then(data => {
@@ -46,6 +46,6 @@ fetch('../admin/fetch_product.php')
         document.getElementById('totalProducts').innerText = 'Error';
     });
 
-// My Orders can be fetched similarly if you have orders table
+
 </script>
 

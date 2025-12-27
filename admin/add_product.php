@@ -25,7 +25,7 @@ try {
     $conn = $db->getConnection();
 
     $stmt = $conn->prepare("INSERT INTO products (product_name, unit_price, category, stock, supplier, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
-    $stmt->bind_param("ssdss", $product_name, $unit_price, $category, $stock, $supplier);
+    $stmt->bind_param("sdsis", $product_name, $unit_price, $category, $stock, $supplier);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Product added successfully']);

@@ -6,7 +6,7 @@ $pageTitle = "Manage Products";?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventora - Products</title>
+    <title>Inventrix - Products</title>
     <link rel="stylesheet" href="./css/product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
     <title>Inventora – <?= $pageTitle ?></title>
@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
             fetchProducts();
             showToast("Product saved successfully!", "success");
+            localStorage.setItem("dashboardRefresh", Date.now());
         })
         .catch(err => showToast("Error: " + err.message, "error"));
     });
@@ -229,6 +230,7 @@ function confirmDelete(){
         fetchProducts();
         closeDeleteModal();
         showToast("Product deleted successfully!", "success");
+        localStorage.setItem("dashboardRefresh", Date.now());
     });
 }
 

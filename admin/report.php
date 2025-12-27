@@ -10,13 +10,11 @@ $pageTitle = "Products Report";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventora - Reports</title>
+   
     <link rel="stylesheet" href="./css/report.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Inventora – <?= $pageTitle ?></title>
-    <style>
-    
-    </style>
+    <title>Inventrix – <?= $pageTitle ?></title>
+   
 </head>
 <body>
     <!-- Sidebar -->
@@ -79,77 +77,50 @@ $pageTitle = "Products Report";
                 <table>
                     <thead>
                         <tr>
-                            <th>Order ID</th>
+                          
                             <th>Date</th>
                             <th>Supplier</th>
                             <th>Product</th>
                             <th>Quantity</th>
                             <th>Unit Price</th>
                             <th>Total Price</th>
-                            <th>Status</th>
+                            <th>ALert</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>PO-001-2023</td>
+                          
                             <td>2023-01-15</td>
                             <td>Global Supplies Inc.</td>
                             <td>Laptop Pro X</td>
                             <td>10</td>
-                            <td>$1200.00</td>
-                            <td>$12000.00</td>
-                            <td class="status-completed">Completed</td>
+                            <td>Rs. 1200.00</td>
+                            <td>Rs. 12000.00</td>
+                            <td class="status-completed">High</td>
                         </tr>
+                     
+                   
                         <tr>
-                            <td>PO-002-2023</td>
-                            <td>2023-01-20</td>
-                            <td>Tech Solutions Ltd.</td>
-                            <td>Wireless Mouse Z</td>
-                            <td>50</td>
-                            <td>$25.00</td>
-                            <td>$1250.00</td>
-                            <td class="status-completed">Completed</td>
-                        </tr>
-                        <tr>
-                            <td>PO-003-2023</td>
-                            <td>2023-02-01</td>
-                            <td>Office Essentials Co.</td>
-                            <td>Ergonomic Keyboard</td>
-                            <td>20</td>
-                            <td>$75.00</td>
-                            <td>$1500.00</td>
-                            <td class="status-pending">Pending</td>
-                        </tr>
-                        <tr>
-                            <td>PO-004-2023</td>
+                           
                             <td>2023-02-10</td>
                             <td>Global Supplies Inc.</td>
                             <td>Monitor UltraView</td>
                             <td>5</td>
-                            <td>$350.00</td>
-                            <td>$1750.00</td>
-                            <td class="status-cancelled">Canceled</td>
+                            <td>Rs. 350.00</td>
+                            <td>Rs. 1750.00</td>
+                            <td class="status-cancelled">Low</td>
                         </tr>
                         <tr>
-                            <td>PO-005-2023</td>
+                           
                             <td>2023-02-15</td>
                             <td>Tech Solutions Ltd.</td>
                             <td>USB-C Hub</td>
                             <td>100</td>
-                            <td>$15.00</td>
-                            <td>$1500.00</td>
-                            <td class="status-completed">Completed</td>
+                            <td>Rs. 15.00</td>
+                            <td>Rs. 1500.00</td>
+                            <td class="status-completed">High</td>
                         </tr>
-                        <tr>
-                            <td>PO-006-2023</td>
-                            <td>2023-03-01</td>
-                            <td>Office Essentials Co.</td>
-                            <td>Desk Lamp LED</td>
-                            <td>30</td>
-                            <td>$40.00</td>
-                            <td>$1200.00</td>
-                            <td class="status-pending">Pending</td>
-                        </tr>
+                    
                     </tbody>
                 </table>
             </div>

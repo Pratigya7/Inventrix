@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" href="./css/profile.css">
 
-<!-- Font Awesome -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <div class="main-content">
@@ -16,11 +16,7 @@
         <label>Email</label>
         <input type="email" id="email" value="<?= $_SESSION['user_email'] ?>" required>
 
-        <!-- <label>Password</label>
-        <div class="password-wrapper">
-            <input type="password" id="password" placeholder="Enter new password">
-            <i class="fa-solid fa-eye toggle-password" onclick="togglePassword(this)"></i>
-        </div> -->
+      
 
         <label>Password</label>
 <div class="password-wrapper">
